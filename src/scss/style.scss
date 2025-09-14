@@ -1,0 +1,93 @@
+@charset "UTF-8";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* CSS Document */
+
+
+
+$containerWidth: 1420px;
+$violetAccentColor: #af2cd1;
+$violetSecondColor: #d13ec2;
+$primaryBlackColor: #120d23;
+$linksColor: #b630ce;
+$menuHoverColor: #605df5;
+$btnColor: #1f1e1e;
+$btnGradientColor: #0c5288;
+$btnGrayColor: #d0d0d0;
+$blackSecondary: #031422;
+$font-title: "Cygre", sans-serif;
+$font-text: "Gilroy", serif;
+$indicators-font: "Cygre-Black", sans-serif;
+
+/* @font-face {
+	font-family: "Gilroy";
+	src: url("../assets/fonts/Gilroy-Light.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Cygre";
+	src: url("../assets/fonts/Cygre-Medium.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Cygre-Black";
+	font-weight: 900;
+	line-height: 100%;
+	text-align: center;
+	src: url("../assets/fonts/Cygre-Black.woff2") format("woff2");
+} */
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+
+	color: #031422;
+	font-size: 16px;
+	letter-spacing: 0;
+	line-height: 140%;
+	box-sizing: border-box;
+}
+
+body.noscroll {
+	overflow: hidden;
+}
+
+a {
+	text-decoration: none;
+}
+
+.wrapper {
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+.main {
+	flex: 1 0 auto;
+}
+
+.footer {
+	flex: 0 0 auto;
+}
+
+.container {
+	max-width: $containerWidth;
+	margin: 0 auto;
+}
+
+.header__wrapper .container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.header {
+
+	width: 100%;
+	z-index: 10;
+}
