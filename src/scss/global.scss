@@ -1,0 +1,52 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+
+  color: #031422;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 140%;
+  box-sizing: border-box;
+}
+
+body.noscroll {
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrapper {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.main {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex: 0 0 auto;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.header__wrapper .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+
+  width: 100%;
+  z-index: 10;
+}

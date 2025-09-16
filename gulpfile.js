@@ -6,126 +6,110 @@ const clean = require("gulp-clean")
 const postcss = require("gulp-postcss")
 const tailwindcss = require("tailwindcss")
 const autoprefixer = require("autoprefixer")
-const sourcemaps = require("gulp-sourcemaps")
-const notify = require("gulp-notify")
-const plumber = require("gulp-plumber")
+const eslint = require("gulp-eslint")
 
-// Пути к файлам
+// Пути
 const paths = {
-	src: {
-		html: "src/**/*.html",
-		scss: "src/scss/**/*.scss",
-		js: "src/js/**/*.js",
-		assets: "src/assets/**/*",
-		partials: "src/partials/**/*.html",
-		tailwindConfig: "tailwind.config.js",
-	},
-	dist: {
-		base: "dist/",
-		css: "dist/css/",
-		js: "dist/js/",
-		assets: "dist/assets/",
-	},
+    src: {
+        html: "src/**/*.html",
+        partials: "src/partials/**/*.html",
+        scss: "src/scss/index.scss",
+        js: ["src/js/**/*.js"],
+    },
+    dist: {
+        html: "dist/",
+        css: "dist/css/",
+        js: "dist/js/",
+        assets: "dist/assets/",
+    }
 }
 
-// Обработчик ошибок
-const errorHandler = notify.onError({
-	title: "Gulp Error",
-	message: "Error: <%= error.message %>",
-	sound: false,
-})
+// Линтинг JavaScript
+function lint() {
+    return gulp.src(paths.src.js)
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError())
+}
 
 // Очистка dist
 function cleanDist() {
-	return gulp.src("dist", { read: false, allowEmpty: true }).pipe(clean())
+    return gulp.src("dist", { read: false, allowEmpty: true }).pipe(clean())
 }
 
-// HTML обработка
+// Сборка HTML (без gulp-filter)
 function html() {
-	return gulp
-		.src(paths.src.html)
-		.pipe(plumber({ errorHandler }))
-		.pipe(
-			fileInclude({
-				prefix: "@@",
-				basepath: "@file",
-			})
-		)
-		.pipe(gulp.dest(paths.dist.base))
-		.pipe(browserSync.stream())
+    return gulp
+        .src(paths.src.html)
+        .pipe(
+            fileInclude({
+                prefix: "@@",
+                basepath: "@file",
+                cache: false,
+            })
+        )
+        .pipe(gulp.dest(paths.dist.html))
+        .pipe(browserSync.stream())
 }
 
-// SCSS + Tailwind обработка
-function styles() {
-	return gulp
-		.src(paths.src.scss)
-		.pipe(plumber({ errorHandler }))
-		.pipe(sourcemaps.init())
-		.pipe(sass().on("error", sass.logError))
-		.pipe(postcss([tailwindcss(paths.src.tailwindConfig), autoprefixer()]))
-		.pipe(sourcemaps.write("."))
-		.pipe(gulp.dest(paths.dist.css))
-		.pipe(browserSync.stream())
+// Компиляция SCSS с Tailwind
+function scss() {
+    return gulp
+        .src(paths.src.scss)
+        .pipe(sass().on("error", sass.logError))
+        .pipe(postcss([tailwindcss("./tailwind.config.js"), autoprefixer()]))
+        .pipe(gulp.dest(paths.dist.css))
+        .pipe(browserSync.stream())
 }
 
-// JS обработка
-function scripts() {
-	return gulp
-		.src(paths.src.js)
-		.pipe(plumber({ errorHandler }))
-		.pipe(sourcemaps.init())
-		.pipe(sourcemaps.write("."))
-		.pipe(gulp.dest(paths.dist.js))
-		.pipe(browserSync.stream())
+// Копирование JS
+function js() {
+    return gulp
+        .src(paths.src.js)
+        .pipe(gulp.dest(paths.dist.js))
+        .pipe(browserSync.stream())
 }
 
 // Копирование ассетов
 function assets() {
-	return gulp.src(paths.src.assets).pipe(gulp.dest(paths.dist.assets)).pipe(browserSync.stream())
+    return gulp
+        .src(
+            ["src/assets/icons/**/*", "src/assets/img/**/*", "src/assets/fonts/**/*"],
+            { base: "src/assets" },
+            { encoding: false }
+        )
+        .pipe(gulp.dest(paths.dist.assets))
+        .pipe(browserSync.stream())
 }
 
-// Наблюдение за изменениями
-function watch() {
-	browserSync.init({
-		server: {
-			baseDir: paths.dist.base,
-			serveStaticOptions: {
-				extensions: ["html"],
-			},
-		},
-		port: 3000,
-		open: false,
-		notify: false,
-	})
+// Сервер + вотчеры
+function serve() {
+    browserSync.init({
+        server: { baseDir: "dist" },
+        mimeTypes: { css: "text/css" },
+        port: 3000,
+        open: true,
+    })
 
-	// Отслеживание HTML и partials
-	gulp.watch([paths.src.html, paths.src.partials], html).on("change", browserSync.reload)
-
-	// Отслеживание SCSS
-	gulp.watch(paths.src.scss, styles)
-
-	// Отслеживание JS
-	gulp.watch(paths.src.js, scripts)
-
-	// Отслеживание ассетов
-	gulp.watch(paths.src.assets, assets)
-
-	// Особое отслеживание конфига Tailwind и классов
-	gulp.watch([paths.src.tailwindConfig, "src/**/*.html", "src/**/*.js"], gulp.series(styles, html))
+    gulp.watch(paths.src.scss, scss)
+    gulp.watch(paths.src.html, html)
+    gulp.watch(paths.src.js, gulp.series(lint, js))
+    gulp.watch(["src/assets/icons/**/*", "src/assets/img/**/*", "src/assets/fonts/**/*"], assets)
+    gulp.watch("./tailwind.config.js", scss)
 }
 
-// Сборка проекта
-const build = gulp.series(cleanDist, gulp.parallel(html, styles, scripts, assets))
-
-// Разработка
-const dev = gulp.series(build, watch)
+// Сборка
+const build = gulp.series(cleanDist, gulp.parallel(html, scss, assets, js))
+const dev = gulp.series(build, serve)
+const production = gulp.series(lint, build)
 
 // Экспорт задач
 exports.clean = cleanDist
 exports.html = html
-exports.styles = styles
-exports.scripts = scripts
+exports.scss = scss
+exports.js = js
 exports.assets = assets
+exports.lint = lint
 exports.build = build
-exports.dev = dev
+exports.production = production
 exports.default = dev

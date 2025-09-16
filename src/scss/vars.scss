@@ -1,0 +1,27 @@
+@charset "UTF-8";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* CSS Document */
+
+$font-title: "Cygre", sans-serif;
+$font-text: "Gilroy", serif;
+$indicators-font: "Cygre-Black", sans-serif;
+
+/* @font-face {
+	font-family: "Gilroy";
+	src: url("../assets/fonts/Gilroy-Light.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Cygre";
+	src: url("../assets/fonts/Cygre-Medium.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Cygre-Black";
+	font-weight: 900;
+	line-height: 100%;
+	text-align: center;
+	src: url("../assets/fonts/Cygre-Black.woff2") format("woff2");
+} */
