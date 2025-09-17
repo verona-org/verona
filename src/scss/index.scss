@@ -1,3 +1,6 @@
 @use "./vars.scss" as *;
 @use "./media.scss" as *;
 @use "./global.scss" as *;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
