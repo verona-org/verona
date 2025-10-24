@@ -1,13 +1,13 @@
+@use "./vars.scss" as *;
+
 html,
 body {
   height: 100%;
 }
 
 body {
-
-  color: #031422;
-  /* font-size: 16px; */
   letter-spacing: 0;
+  font-family: $font-forum;
   line-height: 140%;
   box-sizing: border-box;
 }

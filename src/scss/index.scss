@@ -1,6 +1,198 @@
 @use "./vars.scss" as *;
 @use "./media.scss" as *;
 @use "./global.scss" as *;
+
+@import"pages-style/header.scss";
+@import"pages-style/footer.scss";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slider {
+  position: relative;
+  width: 99vw;
+  height: 99vh;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.slider__container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transform-style: preserve-3d;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: none;
+  transform-style: preserve-3d;
+
+  // Добавляем тень для глубины
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &.active {
+    opacity: 1;
+    z-index: 2;
+    transform: translateZ(0); // Активный слайд на переднем плане
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform-style: preserve-3d;
+  }
+}
+
+.slide {
+  &.slide-next {
+    animation: slideInFromRight 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  }
+
+  &.slide-prev {
+    animation: slideInFromLeft 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  }
+
+  &.slide-out-next {
+    animation: slideOutToLeft 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  }
+
+  &.slide-out-prev {
+    animation: slideOutToRight 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  }
+}
+
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0.7;
+  }
+}
+
+@keyframes slideOutToRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0.7;
+  }
+}
+
+.arrow-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.left-arrow {
+  flex: 0 0 50%;
+  cursor: url("../assets/icons/arrow-left.png"), auto;
+
+  &:hover svg {
+    transform: translateX(-2px);
+  }
+}
+
+.right-arrow {
+  flex: 0 0 50%;
+  cursor: url("../assets/icons/arrow-right.png"), auto;
+
+  &:hover svg {
+    transform: translateX(2px);
+  }
+}
+
+// Эффект затемнения по краям
+.slider-container::before,
+.slider-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.slider-container::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), transparent);
+}
+
+.slider-container::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.4), transparent);
+}
+
+.slider-container.darken-left::before {
+  opacity: 1;
+}
+
+.slider-container.darken-right::after {
+  opacity: 1;
+}
+
+.custom-arrow-cursor {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 9999;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%);
+}

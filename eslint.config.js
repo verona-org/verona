@@ -12,8 +12,18 @@ export default [
             ecmaVersion: 'latest',
             sourceType: 'module',
             globals: {
-                browser: true,
-                es2021: true,
+                // Браузерные глобальные объекты
+                document: 'readonly',
+                window: 'readonly',
+                console: 'readonly',
+                setTimeout: 'readonly',
+                clearTimeout: 'readonly',
+                setInterval: 'readonly',
+                clearInterval: 'readonly',
+                // Дополнительные браузерные API которые могут понадобиться
+                HTMLElement: 'readonly',
+                Event: 'readonly',
+                CustomEvent: 'readonly'
             }
         },
         plugins: {
@@ -22,7 +32,7 @@ export default [
         rules: {
             'indent': ['error', 4],
             'no-unused-vars': 'error',
-            'no-console': 'warn',
+            'no-console': ['warn', { allow: ['warn', 'error'] }],
             'no-mixed-spaces-and-tabs': 'error',
             'no-multi-spaces': 'error',
             'no-trailing-spaces': 'error',

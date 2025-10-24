@@ -1,0 +1,111 @@
+@use "../vars.scss" as *;
+
+.header {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 93.5%;
+    border-bottom: 1px solid $color-border-white;
+    color: $text-color-white;
+    font-family: $font-tt-chocolate;
+    line-height: 120%;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  &__burger {
+    img {
+      width: calc($index * 2);
+      height: auto;
+    }
+  }
+
+  &__catalogue {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    font-weight: 300;
+
+    img {
+      width: calc($index * 0.5);
+      height: auto;
+    }
+  }
+
+  &__search {
+    img {
+      width: calc($index * 0.7);
+      height: auto;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    svg {
+      width: calc($index * 7);
+      height: auto;
+    }
+  }
+
+  &__number {
+    letter-spacing: 0.05rem;
+  }
+
+  &__order-a-call {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    svg {
+      margin-right: 5px;
+      width: calc($index * 0.7);
+      height: auto;
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    gap: 40px;
+    justify-content: flex-end;
+    font-weight: 300;
+  }
+
+  &__lang {
+    display: flex;
+    gap: 10px;
+    font-weight: 350;
+
+    &-ru {
+      color: $text-color-gold;
+    }
+  }
+}
+
+.border-separator {
+  width: 1px;
+  background-color: $color-border-white;
+  height: 20px;
+}

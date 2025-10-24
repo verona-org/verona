@@ -1,0 +1,15 @@
+@use "../vars.scss" as *;
+
+.footer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $footer-fon-color;
+  font-family: $font-tt-chocolate;
+
+  &__container {
+    width: 93.5%;
+  }
+}
