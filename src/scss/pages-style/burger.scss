@@ -1,0 +1,128 @@
+@use "../vars.scss" as *;
+
+.burger-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: rgba(27, 45, 59, 1);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  &--open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.burger {
+  &__content {
+    width: 93.5%;
+    display: flex;
+    margin-top: 80px;
+    flex-direction: row;
+  }
+
+  &__company {
+    width: 50%;
+    border-right: 1px solid $text-color-gold;
+
+    &-title {
+      margin-top: 106px;
+      font-style: $font-forum;
+      font-size: calc($index * 1.5);
+      color: $text-color-gold;
+    }
+  }
+
+  &__nav {
+    width: 55%;
+    margin-top: 15px;
+    color: $text-color-white;
+    font-family: $font-tt-chocolate;
+    font-size: calc($index * 0.7);
+    transition: color 300s ease-in-out;
+
+    a {
+      margin-right: 13px;
+      transition: color 300s ease-in-out;
+      font-weight: 350;
+      line-height: calc($index * 1);
+      white-space: nowrap;
+
+      &:hover {
+        color: $text-color-gold;
+      }
+    }
+  }
+
+  &__contacts {
+    width: 50%;
+
+    &-description {
+      margin-left: 170px;
+      width: 35%;
+      margin-top: 106px;
+      color: $text-color-white;
+      font-size: calc($index * 0.7);
+      letter-spacing: 0.05rem;
+      font-family: $font-tt-chocolate;
+    }
+  }
+
+  &__addresses-salon {
+    margin-left: 170px;
+    margin-top: 10px;
+    font-family: $font-tt-chocolate;
+    color: $text-color-gold;
+  }
+
+  &__telephone {
+    font-size: calc($index * 1.3);
+    margin-left: 170px;
+
+    color: $text-color-gold;
+
+    &-text {
+      color: $text-color-white;
+      margin-left: 170px;
+      font-family: $font-tt-chocolate;
+      font-size: calc($index * 0.7);
+    }
+  }
+}
+
+.msk {
+  margin-top: 40px;
+}
+
+.ros {
+  margin-top: 15px;
+}
+
+.services {
+  margin-top: 40px;
+}
+
+.manual {
+  display: flex;
+  margin-top: 65px;
+  flex-direction: row;
+  color: $text-color-gold;
+  font-family: $font-tt-chocolate;
+
+  svg {
+    width: calc($index * 0.5);
+    height: auto;
+  }
+
+  p {
+    margin-left: 5px;
+  }
+}

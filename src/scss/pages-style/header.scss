@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   height: 80px;
-
+  z-index: 90;
 
   &__container {
     display: flex;
@@ -27,6 +27,14 @@
   }
 
   &__burger {
+    &-close {
+      display: none;
+
+      img {
+        width: calc($index * 1.5);
+        height: auto;
+      }
+    }
     img {
       width: calc($index * 2);
       height: auto;
@@ -34,15 +42,34 @@
   }
 
   &__catalogue {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     gap: 8px;
     align-items: center;
     font-weight: 300;
+    z-index: 100;
 
     img {
       width: calc($index * 0.5);
       height: auto;
+    }
+
+    svg {
+      stroke: white;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--active {
+      color: $text-color-gold;
+
+      svg {
+        transform: rotate(180deg);
+        stroke: $text-color-gold;
+      }
     }
   }
 
