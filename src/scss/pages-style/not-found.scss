@@ -1,0 +1,47 @@
+@use "../vars.scss" as *;
+
+.not-found {
+  background-color: rgba(27, 45, 59, 1);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: start;
+
+    h1 {
+      margin: 50px 0 0 0;
+      font-family: $font-forum;
+      font-size: calc($index * 12);
+      color: $text-color-gold;
+    }
+
+    p {
+      width: 60%;
+      margin-top: -110px;
+      font-family: $font-forum;
+      color: $text-color-gold;
+      font-size: calc($index * 1.3);
+
+      a {
+        color: $text-color-white !important;
+        cursor: pointer;
+      }
+    }
+
+    img {
+      width: 100vw;
+      height: auto;
+      display: flex;
+    }
+  }
+}

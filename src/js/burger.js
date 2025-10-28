@@ -24,6 +24,7 @@ export function burgerOpen () {
     function closeBurger() {
         burgerClose.style.display = 'none';
         burgerOpen.style.display = 'block';
+        headerContainer.style.borderBottom = '1px solid rgba(255, 255, 255, 0.5)';
         burger.classList.remove('burger-overlay--open');
     }
 }

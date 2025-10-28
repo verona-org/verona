@@ -15,6 +15,7 @@ export default [
                 // Браузерные глобальные объекты
                 document: 'readonly',
                 window: 'readonly',
+                fetch: 'readonly',
                 console: 'readonly',
                 setTimeout: 'readonly',
                 clearTimeout: 'readonly',

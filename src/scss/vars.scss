@@ -4,7 +4,7 @@
 
 $font-manrope: "Manrope", sans-serif;
 $font-tt-chocolate: "Manrope", sans-serif;
-$font-forum: "Forum-Regular", serif;
+$font-forum: "Forum", serif;
 
 @font-face {
   font-family: "TT-chocolate";
@@ -17,7 +17,7 @@ $font-forum: "Forum-Regular", serif;
 }
 
 @font-face {
-	font-family: "Forum-Regular";
+	font-family: "Forum";
 	src: url("../assets/fonts/Forum-Regular.ttf") format("ttf");
 }
 

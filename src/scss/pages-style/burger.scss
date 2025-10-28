@@ -44,17 +44,16 @@
   &__nav {
     width: 55%;
     margin-top: 15px;
-    color: $text-color-white;
     font-family: $font-tt-chocolate;
     font-size: calc($index * 0.7);
-    transition: color 300s ease-in-out;
 
     a {
       margin-right: 13px;
-      transition: color 300s ease-in-out;
       font-weight: 350;
       line-height: calc($index * 1);
+      transition: color 0.2s ease-in-out;
       white-space: nowrap;
+      color: $text-color-white;
 
       &:hover {
         color: $text-color-gold;
@@ -94,6 +93,44 @@
       margin-left: 170px;
       font-family: $font-tt-chocolate;
       font-size: calc($index * 0.7);
+    }
+  }
+
+  &__vebsite {
+    display: flex;
+    flex-direction: column;
+    right: 50px;
+    top: 190px;
+    position: absolute;
+
+    &-content {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    svg {
+      width: calc($index * 2.7);
+      height: auto;
+    }
+  }
+
+  &__order-a-call {
+    margin-top: 225px;
+    background-color: $text-color-gold;
+    padding: 12px 25px;
+    font-family: $font-tt-chocolate;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: $text-color-white;
+
+    img {
+      width: 12px;
+      height: 12px;
     }
   }
 }
