@@ -3,6 +3,7 @@ import swiperSlideMain from './swiper-slide-main.js';
 import {catalogue} from './catalogue.js';
 import {burgerOpen} from './burger.js';
 import {errorRedirect} from './error-redirest.js';
+import {orderACall} from './order-a-call.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     swiperSlideMain();
@@ -10,4 +11,5 @@ document.addEventListener('DOMContentLoaded', function () {
     catalogue();
     burgerOpen();
     errorRedirect();
+    orderACall();
 });

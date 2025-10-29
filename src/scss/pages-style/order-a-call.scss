@@ -1,0 +1,271 @@
+@use "../vars.scss" as *;
+
+.order-a-call-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(52, 61, 56, 1);
+  backdrop-filter: blur(10px);
+  z-index: 95;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  &--open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.order-a-call {
+  &__container {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    width: 93.5%;
+  }
+
+  &-close {
+    display: flex;
+    position: absolute;
+    width: 93.5%;
+    margin-top: 30px;
+    justify-content: end;
+    img {
+      width: calc($index * 1.5);
+    }
+  }
+
+  &__block {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: start ;
+    border-right: 1px solid $text-color-gold;
+
+    &-container {
+      height: 70%;
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: $font-forum;
+
+      h1 {
+        font-size: calc($index * 2.7);
+        letter-spacing: 0.02rem;
+        line-height: 110%;
+        margin-top: 50px;
+        color: $text-color-gold;
+      }
+
+      p {
+        font-size: calc($index * 0.7);
+        color: $text-color-white;
+      }
+    }
+  }
+
+  &__form {
+    display: flex;
+    margin-top: 50px;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    width: 70%;
+    height: 70%;
+
+    form {
+      width: 47%;
+      margin-left: 50px;
+    }
+
+    label {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      border-bottom: 1px solid $text-color-gold;
+      color: black;
+      font-family: $font-forum;
+      margin-bottom: 10px;
+
+      input, textarea {
+        outline: none;
+        width: 100%;
+        border: none;
+        background-color: transparent;
+        font-size: calc($index * 1.3);
+        margin-bottom: 10px;
+        color: white;
+        font-family: $font-forum;
+
+        /* Стили для placeholder */
+        &::placeholder {
+          color: white;
+          background-color: transparent;
+          font-family: $font-forum;
+          transition: opacity 0.2s ease-in-out; /* Плавное исчезновение */
+        }
+
+        /* Placeholder скрывается при фокусе */
+        &:focus::placeholder {
+          opacity: 0;
+        }
+
+        /* Стили для автокомплита */
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+          -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+          -webkit-text-fill-color: white !important;
+          background-color: transparent !important;
+          transition: background-color 5000s ease-in-out 0s;
+        }
+
+        /* Для Firefox */
+        &:-moz-ui-invalid {
+          box-shadow: none;
+        }
+      }
+
+      textarea {
+        width: 100%;
+        resize: none;
+        scrollbar-color: $text-color-gold rgba(52, 61, 56, 1);
+        scrollbar-width: thin;
+        scrollbar-arrow-color: transparent;
+
+        &::-webkit-scrollbar-button {
+          display: none !important;
+          background-color: transparent;
+          width: 0;
+          height: 0;
+        }
+      }
+    }
+  }
+
+  &__form-submit {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__box {
+    margin-top: 30px;
+
+    display: flex;
+    align-items: flex-end;
+    border-bottom: none !important;
+    cursor: pointer;
+    font-family: $font-tt-chocolate;
+  }
+
+  &__checkbox-input {
+    display: none;
+  }
+  &__checkbox-input:checked ~ &__decor::before{
+    opacity: 1;
+  }
+
+  &__decor {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid $text-color-gold;
+    margin-bottom: 5px;
+
+    position: relative;
+    flex-shrink: 0;
+
+    &::before{
+      content: url(../assets/images/icons/checkbox.svg);
+      position: absolute;
+      opacity: 0;
+      transition: opacity .2s ease-in-out;
+    }
+  }
+
+  &__info {
+    font-family: $font-tt-chocolate;
+    font-size: calc($index * 0.45);
+    margin-left: 10px;
+    font-weight: 350;
+    line-height: 120%;
+    letter-spacing: 0.02rem;
+    color: $text-color-white;
+  }
+
+  &__btn {
+    margin-top: 40px;
+    background-color: $text-color-gold;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 8px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 25px;
+    flex-direction: row;
+    font-family: $font-tt-chocolate;
+    color: $text-color-white;
+    font-size: calc($index * 0.6);
+
+    img {
+      width: calc($index * 0.5);
+      margin: 0 15px;
+      height: calc($index * 0.5);
+    }
+  }
+
+  &__call {
+    height: 77%;
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+
+    &-container {
+      a {
+        font-size: calc($index * 1.2);
+        line-height: 100%;
+        letter-spacing: 0.02rem;
+        color: $text-color-gold;
+      }
+
+      p {
+        font-size: calc($index * 0.55);
+        font-family: $font-tt-chocolate;
+        color: $text-color-white
+      }
+    }
+  }
+
+  &__network {
+    display: flex;
+    height: 100%;
+    align-items: end;
+    text-align: end;
+    gap: 13px;
+
+    a {
+      color: $text-color-gold;
+      font-size: calc($index * 1.2);
+      line-height: 100%;
+      letter-spacing: 0.02rem;
+      transition: color 300ms ease;
+
+      &:hover {
+        color: $text-color-white;
+      }
+    }
+  }
+}
