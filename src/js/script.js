@@ -1,9 +1,8 @@
 import swiperSlideMain from './swiper-slide-main.js';
-//import initCustomCursorArrows from './init-custom-cursor-arrows.js';
 import {catalogue} from './catalogue.js';
-import {burgerOpen} from './burger.js';
 import {errorRedirect} from './error-redirest.js';
-import {orderACall} from './order-a-call.js';
+import {orderACall, burgerOpen, costCatalogue} from './overlay-controller.js';
+import {productionItem} from './gsap-production.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     swiperSlideMain();
@@ -12,4 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
     burgerOpen();
     errorRedirect();
     orderACall();
+    costCatalogue();
+    productionItem();
 });

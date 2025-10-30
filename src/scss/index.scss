@@ -27,7 +27,10 @@
 @import "pages-style/not-found.scss";
 
 // STYLES ORDER A CALL
-@import "pages-style/order-a-call";
+@import "pages-style/order-a-call.scss";
+
+// STYLES CONST CALCULATION
+@import "pages-style/cost-calculation.scss";
 
 
 @tailwind base;

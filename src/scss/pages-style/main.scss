@@ -438,3 +438,157 @@
   }
 }
 
+.why-verona {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(52, 61, 56, 1);
+
+  &__container {
+    width: 93.5%;
+    display: flex;
+    margin-top: 76px;
+    justify-content: center;
+    flex-direction: column;
+
+    .main-catalogue__nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__block{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+    &-content {
+      width: 49%;
+      display: flex;
+      flex-direction: row;
+      height: auto;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    &-content-two {
+      width: 49%;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+
+    &-svg {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 10px;
+      gap: 20px;
+
+      svg {
+        width: calc($index * 2.7);
+        height: auto;
+      }
+    }
+
+    &-img {
+      position: relative;
+      width: 49.5%;
+    }
+  }
+
+  &__years {
+    font-size: calc($index * 5);
+    color: $text-color-gold;
+    font-family: $font-forum;
+  }
+
+  &__text {
+    width: 54%;
+    display: flex;
+    margin-bottom: 20px;
+    flex-direction: column;
+
+    p {
+      color: $text-color-white;
+      line-height: 130%;
+      font-family: $font-tt-chocolate;
+      font-size: calc($index * 0.7);
+    }
+  }
+  &__title {
+    width: 54%;
+    font-size: calc($index * 1.3);
+    line-height: 110%;
+    color: $text-color-gold;
+  }
+  
+  &-production {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    
+    &__item {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      cursor: pointer;
+      transition: flex 0.3s ease;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+      
+      &-text {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: $text-color-white;
+        z-index: 2;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
+
+.block-two {
+  margin-bottom: 100px;
+}
+
