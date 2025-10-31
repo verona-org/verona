@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
+    "lint:fix": "eslint src --fix",
+    "dev": "concurrently \"gulp dev\" \"vite --port 3001\"",
+    "build": "gulp build && vite build",
+    "gulp:dev": "gulp dev",
+    "vite:dev": "vite --port 3001 --watch"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +21,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
     "eslint": "^9.35.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-html": "^8.1.3",
@@ -34,6 +39,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "postcss": "^8.5.6",
     "sass": "^1.90.0",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.4.1"
   }
 }

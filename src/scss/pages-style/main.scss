@@ -436,6 +436,64 @@
       }
     }
   }
+
+  &-production {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+
+    &__item {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      cursor: pointer;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__text {
+      position: absolute;
+      bottom: 170px;
+      transform: translateX(-50%) translateY(50px);
+      left: 50%;
+      color: $text-color-white;
+      z-index: 2;
+      opacity: 0;
+      white-space: nowrap;
+    }
+
+    &__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &__title {
+      font-size: calc($index * 1.8);
+    }
+    &__subtitle {
+      font-size: calc($index * 0.7);
+      font-family: $font-tt-chocolate;
+    }
+  }
 }
 
 .why-verona {
@@ -533,59 +591,7 @@
     color: $text-color-gold;
   }
   
-  &-production {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    
-    &__item {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-      cursor: pointer;
-      transition: flex 0.3s ease;
-      
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-      }
-      
-      &-text {
-        position: absolute;
-        bottom: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: $text-color-white;
-        z-index: 2;
-        opacity: 0;
-        transition: opacity 0.3s ease;
 
-        &:hover {
-          opacity: 1;
-        }
-      }
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-
-    &__overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      transition: background 0.3s ease;
-
-      &:hover {
-        background: rgba(0, 0, 0, 0.1);
-      }
-    }
-  }
 }
 
 .block-two {

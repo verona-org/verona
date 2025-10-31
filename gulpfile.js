@@ -20,7 +20,8 @@ const paths = {
     src: {
         html: "src/**/*.html",
         scss: "src/scss/**/*.scss",
-        js: "src/js/**/*.js",
+        js: "src/js/main.js", // Теперь указываем главный файл
+        jsWatch: "src/js/**/*.js", // Для отслеживания изменений
         images: "src/assets/images/**/*.{jpg,jpeg,png,gif,svg,webp,ico}",
         icons: "src/assets/icons/**/*.{svg,png,ico,webp}",
         fonts: "src/assets/fonts/**/*.{woff,woff2,ttf,eot,otf}",
@@ -82,17 +83,31 @@ export function styles() {
         .pipe(browserSync.stream())
 }
 
-// JS обработка
-export function scripts() {
-    return gulp
-        .src(paths.src.js)
-        .pipe(plumber({ errorHandler }))
-        .pipe(sourcemaps.init())
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest(paths.dist.js))
-        .pipe(browserSync.stream())
-}
+// JS обработка через VITE
+export async function scripts() {
+    const { build } = await import('vite')
 
+    try {
+        await build({
+            configFile: './vite.config.js',
+            build: {
+                outDir: './dist/js',
+                emptyOutDir: false, // не очищать всю папку dist
+                rollupOptions: {
+                    input: './src/js/script.js',
+                    output: {
+                        entryFileNames: 'script.js',
+                        format: 'es'
+                    }
+                }
+            }
+        })
+        console.log('Vite build completed successfully')
+    } catch (error) {
+        console.error('Vite build failed:', error)
+        throw error
+    }
+}
 // Копирование изображений
 export function images() {
     return gulp
